@@ -1,3 +1,35 @@
 #python Code for opening search websites using Selenium and Gecko Driver 
 
+import sys,pyperclip
+from selenium import webdriver 
+from selenium.webdriver.common import keys
+
+sys.argv
+
+if len(sys.argv)>1:
+    search = ' '.join(sys.argv[1:])
+else:
+    search = pyperclip.paste()
+# Create the Database or Inbuilt Dictionary
+url = {"https://www.ebay.com.au/"   : "#gh-ac",
+       "https://www.amazon.com.au/" :"#twotabsearchtextbox",
+       "http://www.aliexpress.com/": "#search-key",
+       "https://www.kogan.com/au/"  :"#product-search-field"
+    }
+
+for i in url:
+ browser=webdriver.Firefox()
+ browser.get(i)
+ elem=browser.find_element_by_css_selector(url[i])
+ elem.send_keys(search)
+ elem.submit()
+
+
+#program Notes 
+#first_url = 'https://www.ebay.com.au/'
+#second_url ='https://www.amazon.com.au/'
+#third_url = 'http://www.aliexpress.com/'
+#fourth_url = 'https://www.kogan.com/au/'
+#fivth_url = 'https://www.catch.com.au/'
+
 
